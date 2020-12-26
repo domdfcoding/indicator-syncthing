@@ -17,13 +17,15 @@ indicator-syncthing
 	* - Docs
 	  - |docs| |docs_check|
 	* - Tests
-	  - |travis| |codefactor| |pre_commit_ci|
+	  - |actions_linux|
 	* - PyPI
 	  - |pypi-version| |supported-versions| |supported-implementations| |wheel|
 	* - Activity
-	  - |commits-latest| |commits-since| |maintained|
+	  - |commits-latest| |commits-since| |maintained| |pypi-downloads|
+	* - QA
+	  - |codefactor| |actions_flake8| |actions_mypy| |pre_commit_ci|
 	* - Other
-	  - |license| |language| |requires| |pre_commit|
+	  - |license| |language| |requires|
 
 .. |docs| rtfd-shield::
 	:project: indicator-syncthing
@@ -33,9 +35,17 @@ indicator-syncthing
 	:workflow: Docs Check
 	:alt: Docs Check Status
 
-.. |travis| actions-shield::
-	:workflow: Linux Tests
+.. |actions_linux| actions-shield::
+	:workflow: Linux
 	:alt: Linux Test Status
+
+.. |actions_flake8| actions-shield::
+	:workflow: Flake8
+	:alt: Flake8 Status
+
+.. |actions_mypy| actions-shield::
+	:workflow: mypy
+	:alt: mypy status
 
 .. |requires| requires-io-shield::
 	:alt: Requirements Status
@@ -82,8 +92,10 @@ indicator-syncthing
 .. |maintained| maintained-shield:: 2020
 	:alt: Maintenance
 
-.. |pre_commit| pre-commit-shield::
-	:alt: pre-commit
+.. |pypi-downloads| pypi-shield::
+	:project: indicator-syncthing
+	:downloads: month
+	:alt: PyPI - Downloads
 
 .. |pre_commit_ci| pre-commit-ci-shield::
 	:alt: pre-commit.ci status
