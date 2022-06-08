@@ -30,7 +30,7 @@ This is a fork of Stuart Langridge's syncthing-ubuntu-indicator_.
 	* - Activity
 	  - |commits-latest| |commits-since| |maintained| |pypi-downloads|
 	* - QA
-	  - |codefactor| |actions_flake8| |actions_mypy| |pre_commit_ci|
+	  - |codefactor| |actions_flake8| |actions_mypy|
 	* - Other
 	  - |license| |language| |requires|
 
@@ -46,8 +46,8 @@ This is a fork of Stuart Langridge's syncthing-ubuntu-indicator_.
 	:target: https://github.com/domdfcoding/indicator-syncthing/actions?query=workflow%3A%22mypy%22
 	:alt: mypy status
 
-.. |requires| image:: https://requires.io/github/domdfcoding/indicator-syncthing/requirements.svg?branch=master
-	:target: https://requires.io/github/domdfcoding/indicator-syncthing/requirements/?branch=master
+.. |requires| image:: https://dependency-dash.herokuapp.com/github/domdfcoding/indicator-syncthing/badge.svg
+	:target: https://dependency-dash.herokuapp.com/github/domdfcoding/indicator-syncthing/
 	:alt: Requirements Status
 
 .. |codefactor| image:: https://img.shields.io/codefactor/grade/github/domdfcoding/indicator-syncthing?logo=codefactor
@@ -85,16 +85,12 @@ This is a fork of Stuart Langridge's syncthing-ubuntu-indicator_.
 	:target: https://github.com/domdfcoding/indicator-syncthing/commit/master
 	:alt: GitHub last commit
 
-.. |maintained| image:: https://img.shields.io/maintenance/yes/2021
+.. |maintained| image:: https://img.shields.io/maintenance/yes/2022
 	:alt: Maintenance
 
 .. |pypi-downloads| image:: https://img.shields.io/pypi/dm/indicator-syncthing
 	:target: https://pypi.org/project/indicator-syncthing/
 	:alt: PyPI - Downloads
-
-.. |pre_commit_ci| image:: https://results.pre-commit.ci/badge/github/domdfcoding/indicator-syncthing/master.svg
-	:target: https://results.pre-commit.ci/latest/github/domdfcoding/indicator-syncthing/master
-	:alt: pre-commit.ci status
 
 .. end shields
 
