@@ -1,2 +1,5 @@
 pygobject-stubs==0.0.2
 git+https://github.com/repo-helper/appdirs-stubs
+pygobject<=3.50.0
+types-requests
+types-python-dateutil

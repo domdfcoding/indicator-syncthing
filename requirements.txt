@@ -1,7 +1,7 @@
 apeye>=0.6.0
 appdirs>=1.4.4
 domdf-python-tools>=2.3.2
-pygobject>=3.34.0
+pygobject>=3.34.0,<=3.50.0
 python-dateutil>=2.8.0
 requests>=2.18.0
 requests-futures>=1.0.0

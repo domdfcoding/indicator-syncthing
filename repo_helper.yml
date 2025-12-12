@@ -16,13 +16,13 @@ console_scripts:
   - "indicator_syncthing = indicator_syncthing.__main__:main"
   - "indicator-syncthing = indicator_syncthing.__main__:main"
 
-python_deploy_version: 3.6
 
 # Versions to run tests for
 python_versions:
-  - '3.6'
   - '3.7'
   - '3.8'
+  - '3.9'
+  - '3.10'
 
 # additional lines for MANIFEST.in
 manifest_additional:
