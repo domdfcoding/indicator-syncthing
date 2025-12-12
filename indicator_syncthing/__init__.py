@@ -263,7 +263,7 @@ class IndicatorSyncthing:
 			if not address[0].hasChildNodes():
 				raise Exception("No address specified in config")
 
-			self.syncthing_base = f"http://{address[0].firstChild.nodeValue}"
+			self.syncthing_base = f"http://{address[0].firstChild.nodeValue}"  # type: ignore[union-attr]
 
 			# Find and fetch the api key
 			api_key = gui[0].getElementsByTagName("apikey")
@@ -272,7 +272,7 @@ class IndicatorSyncthing:
 			if not api_key[0].hasChildNodes():
 				raise Exception("No apikey specified in config, please create one via the web interface")
 
-			self.api_key = api_key[0].firstChild.nodeValue
+			self.api_key = api_key[0].firstChild.nodeValue  # type: ignore[union-attr]
 
 			# Read folders and devices from config
 			for elem in conf[0].childNodes:
@@ -1032,7 +1032,7 @@ class IndicatorSyncthing:
 	def run() -> None:  # noqa: D102
 		gtk.main()
 
-	@staticmethod  # noqa: A003  # pylint: disable=redefined-builtin
+	@staticmethod
 	def quit(*_) -> None:  # noqa: A003,D102  # pylint: disable=redefined-builtin
 		log.shutdown()
 		gtk.main_quit()
