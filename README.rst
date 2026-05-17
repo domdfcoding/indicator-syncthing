@@ -85,11 +85,11 @@ This is a fork of Stuart Langridge's syncthing-ubuntu-indicator_.
 	:target: https://github.com/domdfcoding/indicator-syncthing/commit/master
 	:alt: GitHub last commit
 
-.. |maintained| image:: https://img.shields.io/maintenance/yes/2025
+.. |maintained| image:: https://img.shields.io/maintenance/yes/2026
 	:alt: Maintenance
 
 .. |pypi-downloads| image:: https://img.shields.io/pypi/dm/indicator-syncthing
-	:target: https://pypi.org/project/indicator-syncthing/
+	:target: https://pypistats.org/packages/indicator-syncthing
 	:alt: PyPI - Downloads
 
 .. end shields
