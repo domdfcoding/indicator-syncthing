@@ -48,7 +48,7 @@ def main():  # noqa: D103
 			"--loglevel",
 			choices=["debug", "info", "warning", "error"],
 			default="info",
-			help="Filter logging by level. Default: %(default)s"
+			help="Filter logging by level. Default: %(default)s",
 			)
 	parser.add_argument("--log-events", action="store_true", help="Log every event")
 	parser.add_argument(
@@ -56,31 +56,33 @@ def main():  # noqa: D103
 			type=int,
 			default=10,
 			metavar='N',
-			help="Interval for polling event interface, in seconds. Default: %(default)s"
+			help="Interval for polling event interface, in seconds. Default: %(default)s",
 			)
 	parser.add_argument(
 			"--timeout-rest",
 			type=int,
 			default=30,
 			metavar='N',
-			help="Interval for polling REST interface, in seconds. Default: %(default)s"
+			help="Interval for polling REST interface, in seconds. Default: %(default)s",
 			)
 	parser.add_argument(
 			"--timeout-gui",
 			type=int,
 			default=5,
 			metavar='N',
-			help="Interval for refreshing GUI, in seconds. Default: %(default)s"
+			help="Interval for refreshing GUI, in seconds. Default: %(default)s",
 			)
 	parser.add_argument(
-			"--no-shutdown", action="store_true", help="Hide Start, Restart, and Shutdown Syncthing menus"
+			"--no-shutdown",
+			action="store_true",
+			help="Hide Start, Restart, and Shutdown Syncthing menus",
 			)
 	parser.add_argument(
 			"--timeformat",
 			type=str,
 			default="%x %X",
 			metavar="FORMAT",
-			help="Format to display date and time. See 'man strftime' for help. Default: %(default)s"
+			help="Format to display date and time. See 'man strftime' for help. Default: %(default)s",
 			)
 	parser.add_argument("--text-only", action="store_true", help="Text only, no icon")
 	parser.add_argument(
@@ -88,7 +90,7 @@ def main():  # noqa: D103
 			type=int,
 			default=20,
 			metavar='N',
-			help="Number of recent files entries to keep. Default: %(default)s"
+			help="Number of recent files entries to keep. Default: %(default)s",
 			)
 
 	args, unknown = parser.parse_known_args()

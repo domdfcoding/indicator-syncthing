@@ -26,6 +26,8 @@ A Syncthing status menu for Unity and other desktops that support AppIndicator.
 #
 
 # stdlib
+from argparse import Namespace
+import datetime
 import json
 import logging as log
 import os
@@ -33,7 +35,7 @@ import socket  # used only to catch exceptions
 import subprocess
 import time
 import webbrowser as wb
-from typing import no_type_check
+from typing import Any, Dict, List, Optional, no_type_check
 from urllib.parse import urljoin, urlparse
 from xml.dom import minidom
 
@@ -70,9 +72,11 @@ APPINDICATOR_ID = "indicator-syncthing"
 class IndicatorSyncthing:
 	"""
 	The main application class.
+
+	:param args:
 	"""
 
-	def __init__(self, args):
+	def __init__(self, args: Namespace):
 		log.info("Started main procedure")
 		self.args = args
 		self.wd = os.path.dirname(os.path.realpath(__file__))
@@ -98,15 +102,15 @@ class IndicatorSyncthing:
 		self.set_icon()
 		self.create_menu()
 
-		self.downloading_files = []
-		self.downloading_files_extra = {}  # map: file_details -> file_details_extra
-		self.recent_files = []
-		self.folders = []
-		self.devices = []
-		self.errors = []
+		self.downloading_files: List[Dict[str, Any]] = []
+		self.downloading_files_extra: Dict[str, Any] = {}  # map: file_details -> file_details_extra
+		self.recent_files: List[Dict[str, Any]] = []
+		self.folders: List[Dict[str, Any]] = []
+		self.devices: List[Dict[str, Any]] = []
+		self.errors: List[Dict[str, Any]] = []
 
-		self.last_ping = None
-		self.system_status = {}
+		self.last_ping: Optional[datetime.datetime] = None
+		self.system_status: Dict[str, str] = {}
 		# TODO: read syncthing config and parse from there
 		self.syncthing_base = f"http://localhost:{get_port()}"
 		self.syncthing_version = ''
@@ -315,10 +319,13 @@ class IndicatorSyncthing:
 		glib.timeout_add_seconds(self.args.timeout_rest, self.timeout_rest)
 		glib.timeout_add_seconds(self.args.timeout_event, self.timeout_events)
 
-	def syncthing_url(self, url) -> str:
+	def syncthing_url(self, url: str) -> str:
 		"""
 		Constructs a url from the given values and the address read from the config file.
+
+		:param url:
 		"""
+
 		return urljoin(self.syncthing_base, url)
 
 	def open_web_ui(self, *_) -> None:  # noqa: D102  :
@@ -603,7 +610,7 @@ class IndicatorSyncthing:
 			# For the first day, the most recent version is kept every hour.
 			# For the first 30 days, the most recent version is kept every day.
 			log.debug(
-					f"File locally updated: {file_details['file']} ({event['data']['action']}) at {event['time']}"
+					f"File locally updated: {file_details['file']} ({event['data']['action']}) at {event['time']}",
 					)
 		except ValueError:
 			log.debug(f"Completed a file we didn't know about: {event['data']['item']}")
@@ -785,14 +792,14 @@ class IndicatorSyncthing:
 								f["folder"],
 								shorten_path(f["file"]),
 								self.downloading_files_extra[fj]["progress"] if fj in self.downloading_files_extra
-								and "progress" in self.downloading_files_extra[fj] else ''
-								)
+								and "progress" in self.downloading_files_extra[fj] else '',
+								),
 						)
 				self.current_files_submenu.append(mi)
 				mi.connect(
 						"activate",
 						self.open_file_browser,
-						os.path.split(self.get_full_path(f["folder"], f["file"]))[0]
+						os.path.split(self.get_full_path(f["folder"], f["file"]))[0],
 						)
 				mi.show()
 			self.current_files_menu.show()
@@ -812,14 +819,14 @@ class IndicatorSyncthing:
 					}
 			for f in self.recent_files:
 				mi = gtk.MenuItem(
-						f"{icons.get(f['action'], 'unknown')} {self.convert_time(f['time'])} [{f['folder']}] {shorten_path(f['file'])}"
+						f"{icons.get(f['action'], 'unknown')} {self.convert_time(f['time'])} [{f['folder']}] {shorten_path(f['file'])}",
 						)
 				self.recent_files_submenu.append(mi)
 
 				mi.connect(
 						"activate",
 						self.open_file_browser,
-						os.path.split(self.get_full_path(f["folder"], f["file"]))[0]
+						os.path.split(self.get_full_path(f["folder"], f["file"]))[0],
 						)
 				mi.show()
 
@@ -856,8 +863,8 @@ class IndicatorSyncthing:
 												# fid=elm["id"], num=elm.get("needFiles"),
 												fid=elm["id"] or elm["label"],
 												num=elm.get("needFiles"),
-												bytes=human_readable(elm.get("needBytes", 0))
-												)
+												bytes=human_readable(elm.get("needBytes", 0)),
+												),
 										)
 							else:
 								# mi.set_label(elm["id"].ljust(folder_maxlength + 20))
@@ -981,7 +988,7 @@ class IndicatorSyncthing:
 				'\n'.join([
 						"This menu applet for systems supporting AppIndicator",
 						"can show the status of a Syncthing instance",
-						])
+						]),
 				)
 		dialog.set_license(self.get_license())
 		dialog.run()
@@ -1074,7 +1081,7 @@ class IndicatorSyncthing:
 		except Exception as e:
 			log.error(f"Couldn't open file browser for: {path} ({e})")
 
-	def get_full_path(self, folder, item):  # noqa: D102
+	def get_full_path(self, folder, item) -> str:  # noqa: D102
 		for elem in self.folders:
 			a = ''
 			if elem["id"] == folder:
