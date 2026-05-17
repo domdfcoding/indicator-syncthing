@@ -26,7 +26,6 @@ A Syncthing status menu for Unity and other desktops that support AppIndicator.
 #
 
 # stdlib
-from argparse import Namespace
 import datetime
 import json
 import logging as log
@@ -35,6 +34,7 @@ import socket  # used only to catch exceptions
 import subprocess
 import time
 import webbrowser as wb
+from argparse import Namespace
 from typing import Any, Dict, List, Optional, no_type_check
 from urllib.parse import urljoin, urlparse
 from xml.dom import minidom
